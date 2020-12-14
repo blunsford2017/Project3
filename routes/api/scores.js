@@ -1,8 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const scoresCtrl = require('../../controllers/scores');
+const scoresCtrl = require("../../controllers/scores");
 
-router.get('/', scoresCtrl.highScores);
+router.get("/", scoresCtrl.highScores);
 
 /*---------- Protected Routes ----------*/
 // Process the token for only the routes below
@@ -11,11 +11,10 @@ router.use(require("../../config/auth"));
 // If user is valid, allows them to hit the route:
 router.post("/", checkAuth, scoresCtrl.create);
 
-/*----- Helper Functions -----*/
 // Restrict access so ONLY valid authenticated users can access the route:
 function checkAuth(req, res, next) {
-    if (req.user) return next();
-    return res.status(401).json({ msg: "Not Authorized" });
-  }
+  if (req.user) return next();
+  return res.status(401).json({ msg: "Not Authorized" });
+}
 
 module.exports = router;

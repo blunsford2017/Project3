@@ -9,8 +9,7 @@ require('dotenv').config();
 
 const scoresRouter = require('./routes/api/scores');
 const usersRouter = require('./routes/api/users');
-app.use(require('./config/auth'));
-app.use('/api/scores', require('./routes/api/scores'));
+
 
 require('./config/database');
 
