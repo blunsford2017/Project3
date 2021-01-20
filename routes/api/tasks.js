@@ -1,15 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const scoresCtrl = require("../../controllers/scores");
+const tasksCtrl = require("../../controllers/tasks");
 
-router.get("/", scoresCtrl.highScores);
+router.get("/", tasksCtrl.index);
 
 /*---------- Protected Routes ----------*/
 // Process the token for only the routes below
 router.use(require("../../config/auth"));
 // Adds checkAuth so if a user is NOT signed in or token is not valid, gives "Not Authorized" error.
 // If user is valid, allows them to hit the route:
-router.post("/", checkAuth, scoresCtrl.create);
+router.post("/", checkAuth, tasksCtrl.create);
 
 // Restrict access so ONLY valid authenticated users can access the route:
 function checkAuth(req, res, next) {
